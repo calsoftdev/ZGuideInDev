@@ -30,8 +30,6 @@ public class DBServiceController {
 	@GetMapping("/getstudent/{studentName}")
 	@Cacheable("student")
 	public List<Student> getName(@PathVariable("studentName") final String studentName) throws InterruptedException{
-		System.out.println("sleep interval 5 seconds");
-		Thread.sleep(5000);
 		return dbserviceRepository.findByStudentName(studentName);
 				//.stream().map(Student::getStudentName).collect(Collectors.toList());
 	}
