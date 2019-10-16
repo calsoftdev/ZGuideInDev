@@ -3,6 +3,7 @@ package com.calsoftdev.democontroller;
 import java.io.Console;
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,12 @@ public class DBServiceController {
 		super();
 		this.dbserviceRepository = dbserviceRepository;
 	}
-
+	
 	@GetMapping("/getstudent/{studentName}")
-	public List<Student> getName(@PathVariable("studentName") final String studentName){
+	@Cacheable("student")
+	public List<Student> getName(@PathVariable("studentName") final String studentName) throws InterruptedException{
+		System.out.println("sleep interval 5 seconds");
+		Thread.sleep(5000);
 		return dbserviceRepository.findByStudentName(studentName);
 				//.stream().map(Student::getStudentName).collect(Collectors.toList());
 	}
