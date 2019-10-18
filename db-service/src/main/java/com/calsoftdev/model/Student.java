@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+
 @Entity
 @Table
 public class Student {
@@ -28,6 +29,17 @@ public class Student {
 	
 	@Column(name = "STUDENT_PARENT_INFO")
 	private String studentParentInfo;
+	
+	private int mentorId;
+
+
+	public int getMentorId() {
+		return mentorId;
+	}
+
+	public void setMentorId(int mentorId) {
+		this.mentorId = mentorId;
+	}
 
 	public Student() {
 		super();
